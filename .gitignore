@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## I DON"T WANT YOU IN MY SUPABASE OK?
+application.properties
+application.yml
+*.properties
+*.yml
