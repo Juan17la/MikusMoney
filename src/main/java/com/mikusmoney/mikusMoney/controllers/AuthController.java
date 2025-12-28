@@ -69,29 +69,22 @@ public class AuthController {
     }
     
 
-    /**
-     * Sets the JWT token as an HTTP-only cookie
-     * @param response HttpServletResponse to add the cookie
-     * @param token JWT token to store in the cookie
-     */
+
     private void setAuthCookie(HttpServletResponse response, String token) {
         Cookie cookie = new Cookie("AUTH-TOKEN", token);
-        cookie.setHttpOnly(true); // Prevents JavaScript access (XSS protection)
-        cookie.setSecure(false); // Set to true in production with HTTPS
-        cookie.setPath("/"); // Cookie available for all paths
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false); 
+        cookie.setPath("/"); // Cookie for all paths
         cookie.setMaxAge(24 * 60 * 60); // 24 hours in seconds
-        // cookie.setSameSite("Strict"); // CSRF protection (requires Spring 6+)
+        // cookie.setSameSite("Strict"); 
         response.addCookie(cookie);
     }
     
-    /**
-     * Clears the authentication cookie by setting its max age to 0
-     * @param response HttpServletResponse to clear the cookie
-     */
+
     private void clearAuthCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie("AUTH-TOKEN", null);
         cookie.setHttpOnly(true);
-        cookie.setSecure(false); // Set to true in production with HTTPS
+        cookie.setSecure(false);
         cookie.setPath("/");
         cookie.setMaxAge(0); // Delete cookie
         response.addCookie(cookie);
