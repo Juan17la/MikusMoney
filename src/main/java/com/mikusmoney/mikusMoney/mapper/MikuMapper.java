@@ -16,7 +16,6 @@ public interface MikuMapper {
     @Mapping(target = "savingsPig", ignore = true)
     Miku toEntity(MikuCreateRequest request);
 
-    @Mapping(target = "fullName", source = "fullName")
     @Mapping(target = "email", source = "credential.email")
     @Mapping(target = "phoneNumber", source = "credential.phoneNumber")
     MikuResponse toResponse(Miku miku);

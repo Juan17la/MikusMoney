@@ -14,7 +14,6 @@ public class MikuResponse {
     private Long id;
     private String name;
     private String lastName;
-    private String fullName;
     private LocalDate birthDate;
     private String publicCode;
     private LocalDateTime createdAt;
