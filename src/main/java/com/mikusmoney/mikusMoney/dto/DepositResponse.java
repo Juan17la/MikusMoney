@@ -14,7 +14,4 @@ public class DepositResponse {
     private Long id;
     private BigDecimal amount;
     private LocalDateTime createdAt;
-    private Long mikuId;
-    private String mikuFullName;
-    private String transactionType;
 }
