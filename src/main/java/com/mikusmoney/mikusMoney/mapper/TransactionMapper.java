@@ -3,7 +3,6 @@ package com.mikusmoney.mikusMoney.mapper;
 import com.mikusmoney.mikusMoney.dto.TransactionHistoryResponse;
 import com.mikusmoney.mikusMoney.entity.Deposit;
 import com.mikusmoney.mikusMoney.entity.Send;
-import com.mikusmoney.mikusMoney.entity.Transaction;
 import com.mikusmoney.mikusMoney.entity.Withdraw;
 import org.mapstruct.*;
 
