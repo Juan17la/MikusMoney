@@ -58,12 +58,12 @@ public class Miku {
 
     // Helper method to get full name
     public String getFullName() {
-        return "Miku " + name + " " + lastName;
+        return name + " " + lastName;
     }
 
     // Generate a unique public code (this is a basic implementation, should be enhanced in service)
     public String generatePublicCode() {
-        return "MK" + System.currentTimeMillis();
+        return String.valueOf(System.currentTimeMillis()).substring(5, 15);
     }
 
     // Business method to check if Miku is adult (18+)
