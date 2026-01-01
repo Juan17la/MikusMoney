@@ -1,8 +1,8 @@
 package com.mikusmoney.mikusMoney.services;
 
-import com.mikusmoney.mikusMoney.dto.AuthResponse;
-import com.mikusmoney.mikusMoney.dto.MikuCreateRequest;
-import com.mikusmoney.mikusMoney.dto.MikuResponse;
+import com.mikusmoney.mikusMoney.dto.authenticationDTOs.AuthResponse;
+import com.mikusmoney.mikusMoney.dto.mikuDTOs.MikuCreateRequest;
+import com.mikusmoney.mikusMoney.dto.mikuDTOs.MikuResponse;
 import com.mikusmoney.mikusMoney.entity.Account;
 import com.mikusmoney.mikusMoney.entity.Credential;
 import com.mikusmoney.mikusMoney.entity.Miku;
