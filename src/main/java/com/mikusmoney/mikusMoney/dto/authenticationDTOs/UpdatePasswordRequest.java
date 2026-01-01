@@ -1,4 +1,4 @@
-package com.mikusmoney.mikusMoney.dto;
+package com.mikusmoney.mikusMoney.dto.authenticationDTOs;
 
 import jakarta.validation.constraints.*;
 import lombok.*;

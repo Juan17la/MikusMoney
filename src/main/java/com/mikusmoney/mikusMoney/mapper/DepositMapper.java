@@ -1,7 +1,7 @@
 package com.mikusmoney.mikusMoney.mapper;
 
-import com.mikusmoney.mikusMoney.dto.DepositRequest;
-import com.mikusmoney.mikusMoney.dto.DepositResponse;
+import com.mikusmoney.mikusMoney.dto.transactionsDTOs.depositDTOs.DepositRequest;
+import com.mikusmoney.mikusMoney.dto.transactionsDTOs.depositDTOs.DepositResponse;
 import com.mikusmoney.mikusMoney.entity.Deposit;
 import org.mapstruct.*;
 

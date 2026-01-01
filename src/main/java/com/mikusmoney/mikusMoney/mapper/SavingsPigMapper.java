@@ -1,6 +1,6 @@
 package com.mikusmoney.mikusMoney.mapper;
 
-import com.mikusmoney.mikusMoney.dto.SavingsPigResponse;
+import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigResponse;
 import com.mikusmoney.mikusMoney.entity.SavingsPig;
 import org.mapstruct.*;
 

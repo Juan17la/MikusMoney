@@ -1,6 +1,6 @@
 package com.mikusmoney.mikusMoney.mapper;
 
-import com.mikusmoney.mikusMoney.dto.MikuCreateRequest;
+import com.mikusmoney.mikusMoney.dto.mikuDTOs.MikuCreateRequest;
 import com.mikusmoney.mikusMoney.entity.Credential;
 import org.mapstruct.*;
 

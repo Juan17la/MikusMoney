@@ -1,4 +1,4 @@
-package com.mikusmoney.mikusMoney.dto;
+package com.mikusmoney.mikusMoney.dto.savingsDTOs;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -7,16 +7,13 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UpdatePinCodeRequest {
+public class SavingsPigBreakRequest {
 
     @NotNull(message = "Miku ID is required")
     @Positive(message = "Miku ID must be positive")
     private Long mikuId;
 
-    @NotBlank(message = "Password is required")
-    private String password;
-
-    @NotBlank(message = "New PIN code is required")
+    @NotBlank(message = "PIN code is required")
     @Pattern(regexp = "^\\d{4,6}$", message = "PIN code must be 4-6 digits")
-    private String newPinCode;
+    private String pinCode;
 }

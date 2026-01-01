@@ -1,17 +1,15 @@
-package com.mikusmoney.mikusMoney.dto;
+package com.mikusmoney.mikusMoney.dto.transactionsDTOs.sendDTOs;
 
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DepositResponse {
+public class SendResponse {
 
     private Long id;
     private BigDecimal amount;
-    private LocalDateTime createdAt;
 }

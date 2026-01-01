@@ -1,4 +1,4 @@
-package com.mikusmoney.mikusMoney.dto;
+package com.mikusmoney.mikusMoney.dto.transactionsDTOs;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -9,18 +9,14 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SavingsPigDepositRequest {
-
-    @NotNull(message = "Miku ID is required")
-    @Positive(message = "Miku ID must be positive")
-    private Long mikuId;
+public class WithdrawRequest {
 
     @NotNull(message = "Amount is required")
     @DecimalMin(value = "0.01", message = "Amount must be greater than 0")
     @Digits(integer = 17, fraction = 2, message = "Invalid amount format")
     private BigDecimal amount;
 
-    @NotBlank(message = "PIN code is required")
+    @NotBlank(message = "PIN code is required for withdrawal")
     @Pattern(regexp = "^\\d{4,6}$", message = "PIN code must be 4-6 digits")
     private String pinCode;
 }

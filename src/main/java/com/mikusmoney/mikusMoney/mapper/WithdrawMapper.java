@@ -1,7 +1,7 @@
 package com.mikusmoney.mikusMoney.mapper;
 
-import com.mikusmoney.mikusMoney.dto.WithdrawRequest;
-import com.mikusmoney.mikusMoney.dto.WithdrawResponse;
+import com.mikusmoney.mikusMoney.dto.transactionsDTOs.WithdrawResponse;
+import com.mikusmoney.mikusMoney.dto.transactionsDTOs.WithdrawRequest;
 import com.mikusmoney.mikusMoney.entity.Withdraw;
 import org.mapstruct.*;
 
@@ -13,6 +13,5 @@ public interface WithdrawMapper {
     @Mapping(target = "miku", ignore = true) // Will be set in service
     Withdraw toEntity(WithdrawRequest request);
 
-    @Mapping(target = "mikuId", source = "miku.id")
     WithdrawResponse toResponse(Withdraw withdraw);
 }

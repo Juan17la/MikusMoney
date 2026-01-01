@@ -1,4 +1,4 @@
-package com.mikusmoney.mikusMoney.dto;
+package com.mikusmoney.mikusMoney.dto.transactionsDTOs.sendDTOs;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -10,10 +10,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class SendMoneyRequest {
-
-    @NotNull(message = "Sender Miku ID is required")
-    @Positive(message = "Sender Miku ID must be positive")
-    private Long senderMikuId;
 
     @NotBlank(message = "Receiver public code is required")
     private String receiverPublicCode;

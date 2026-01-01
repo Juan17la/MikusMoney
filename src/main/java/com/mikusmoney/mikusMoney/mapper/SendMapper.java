@@ -1,7 +1,7 @@
 package com.mikusmoney.mikusMoney.mapper;
 
-import com.mikusmoney.mikusMoney.dto.SendMoneyRequest;
-import com.mikusmoney.mikusMoney.dto.SendResponse;
+import com.mikusmoney.mikusMoney.dto.transactionsDTOs.sendDTOs.SendMoneyRequest;
+import com.mikusmoney.mikusMoney.dto.transactionsDTOs.sendDTOs.SendResponse;
 import com.mikusmoney.mikusMoney.entity.Send;
 import org.mapstruct.*;
 
@@ -14,9 +14,5 @@ public interface SendMapper {
     @Mapping(target = "receiver", ignore = true) // Will be set in service
     Send toEntity(SendMoneyRequest request);
 
-    @Mapping(target = "senderMikuId", source = "sender.id")
-    @Mapping(target = "senderFullName", source = "sender.fullName")
-    @Mapping(target = "receiverMikuId", source = "receiver.id")
-    @Mapping(target = "receiverFullName", source = "receiver.fullName")
     SendResponse toResponse(Send send);
 }

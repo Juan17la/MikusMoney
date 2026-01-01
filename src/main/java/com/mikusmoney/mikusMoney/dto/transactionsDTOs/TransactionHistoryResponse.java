@@ -1,14 +1,17 @@
-package com.mikusmoney.mikusMoney.dto;
+package com.mikusmoney.mikusMoney.dto.transactionsDTOs;
 
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TransactionHistoryResponse {
 
     private Long id;
@@ -17,12 +20,9 @@ public class TransactionHistoryResponse {
     private LocalDateTime createdAt;
     
     // For deposits and withdrawals
-    private Long mikuId;
-    private String mikuFullName;
+    private String owner;
     
     // For send transactions
-    private Long senderMikuId;
-    private String senderFullName;
-    private Long receiverMikuId;
-    private String receiverFullName;
+    private String from;
+    private String to;
 }
