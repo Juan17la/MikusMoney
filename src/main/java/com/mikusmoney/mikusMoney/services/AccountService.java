@@ -4,8 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.mikusmoney.mikusMoney.dto.accountDTOs.AccountResponse;
 import com.mikusmoney.mikusMoney.entity.Account;
-import com.mikusmoney.mikusMoney.validators.AuthValidator;
-import com.mikusmoney.mikusMoney.validators.AuthValidator.AuthContext;
+import com.mikusmoney.mikusMoney.services.AuthContextService.AuthContext;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +13,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountService {
 
-    private final AuthValidator authValidator;
+    private final AuthContextService authContextService;
 
     @Transactional
     public AccountResponse getAccountDetail() {
         // Validate authentication (no PIN required for read-only operation)
-        AuthContext context = authValidator.validateAuth(null);
+        AuthContext context = authContextService.validateAuth(null);
         
         Account account = context.account();
         
