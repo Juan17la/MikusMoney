@@ -1,18 +1,18 @@
-package com.mikusmoney.mikusMoney.validators;
+package com.mikusmoney.mikusMoney.services;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mikusmoney.mikusMoney.repository.TransactionRepository;
 
 import lombok.RequiredArgsConstructor;
 
 /**
- * Validator responsible for checking idempotency keys to prevent duplicate transactions.
+ * Service responsible for checking idempotency keys to prevent duplicate transactions.
  * Ensures that a transaction with the same idempotency key has not been processed before.
  */
-@Component
+@Service
 @RequiredArgsConstructor
-public class IdempotencyValidator {
+public class IdempotencyService {
 
     private final TransactionRepository transactionRepository;
 

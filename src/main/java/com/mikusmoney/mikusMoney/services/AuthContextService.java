@@ -1,9 +1,9 @@
-package com.mikusmoney.mikusMoney.validators;
+package com.mikusmoney.mikusMoney.services;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mikusmoney.mikusMoney.entity.Account;
 import com.mikusmoney.mikusMoney.entity.Credential;
@@ -14,12 +14,12 @@ import com.mikusmoney.mikusMoney.repository.CredentialRepository;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Validator responsible for authentication-related operations.
+ * Service responsible for authentication context operations.
  * Handles authentication verification, user retrieval, account fetching, and PIN validation.
  */
-@Component
+@Service
 @RequiredArgsConstructor
-public class AuthValidator {
+public class AuthContextService {
 
     private final AccountRepository accountRepository;
     private final CredentialRepository credentialRepository;
