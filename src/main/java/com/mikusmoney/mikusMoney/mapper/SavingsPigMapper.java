@@ -11,5 +11,6 @@ public interface SavingsPigMapper {
     @Mapping(target = "mikuId", source = "miku.id")
     SavingsPigResponse toResponse(SavingsPig savingsPig);
     
+    @Mapping(target = "goalName", source = "nameGoal")
     SavingsPig toEntity(SavingsPigCreationRequest request);
 }
