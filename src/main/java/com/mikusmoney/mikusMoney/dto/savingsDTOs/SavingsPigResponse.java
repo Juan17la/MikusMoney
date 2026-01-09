@@ -17,5 +17,4 @@ public class SavingsPigResponse {
     private LocalDateTime brokenAt;
     private LocalDateTime createdAt;
     private Long mikuId;
-    private String mikuFullName;
 }
