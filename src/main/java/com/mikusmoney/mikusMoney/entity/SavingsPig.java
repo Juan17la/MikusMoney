@@ -23,6 +23,12 @@ public class SavingsPig {
     @Column(name = "saved_money", nullable = false, precision = 19, scale = 2)
     private BigDecimal savedMoney;
 
+    @Column(name = "goal", nullable = false, precision = 19, scale = 2)
+    private BigDecimal goal;
+
+    @Column(name = "goal_name", nullable = false, length = 100)
+    private String goalName;
+
     @Column(nullable = false)
     private Boolean broken;
 

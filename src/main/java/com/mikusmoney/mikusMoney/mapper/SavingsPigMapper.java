@@ -1,5 +1,6 @@
 package com.mikusmoney.mikusMoney.mapper;
 
+import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigCreationRequest;
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigResponse;
 import com.mikusmoney.mikusMoney.entity.SavingsPig;
 import org.mapstruct.*;
@@ -8,6 +9,7 @@ import org.mapstruct.*;
 public interface SavingsPigMapper {
 
     @Mapping(target = "mikuId", source = "miku.id")
-    @Mapping(target = "mikuFullName", source = "miku.fullName")
     SavingsPigResponse toResponse(SavingsPig savingsPig);
+    
+    SavingsPig toEntity(SavingsPigCreationRequest request);
 }
