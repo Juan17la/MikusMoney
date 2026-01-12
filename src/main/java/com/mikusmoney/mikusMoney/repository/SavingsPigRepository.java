@@ -14,4 +14,6 @@ public interface SavingsPigRepository extends JpaRepository<SavingsPig, Long> {
 
     @Query("SELECT sp FROM SavingsPig sp WHERE sp.miku.id = :mikuId AND sp.broken = false")
     List<SavingsPig> findPigsByMikuId(@Param("mikuId") Long mikuId);
+    
+    SavingsPig findByIdAndMikuId(Long id, Long mikuId);
 }
