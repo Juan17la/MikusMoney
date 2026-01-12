@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigCreationRequest;
+import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigDepositRequest;
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigResponse;
 import com.mikusmoney.mikusMoney.services.SavingsPigService;
 
@@ -32,6 +33,11 @@ public class SavingsPigController {
         return ResponseEntity.ok(savingsPigService.createSavingsPig(request));
     }
 
+    @PostMapping("save")
+    public ResponseEntity<SavingsPigResponse> saveMoney(@Valid @RequestBody SavingsPigDepositRequest request) {
+        return ResponseEntity.ok(savingsPigService.depositMoney(request));
+    }
+    
     @GetMapping("all")
     public ResponseEntity<List<SavingsPigResponse>> getAllSavingsPigs() {
         return ResponseEntity.ok(savingsPigService.getSavingsPigs());

@@ -2,10 +2,13 @@ package com.mikusmoney.mikusMoney.validations;
 
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Service;
+
 import com.mikusmoney.mikusMoney.repository.SavingsPigRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class SavingsValidations {
 
