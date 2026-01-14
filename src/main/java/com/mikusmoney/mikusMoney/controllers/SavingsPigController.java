@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigBreakRequest;
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigCreationRequest;
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigDepositRequest;
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigResponse;
@@ -18,18 +19,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/v0.1/savings/pig/")
 @RequiredArgsConstructor
 public class SavingsPigController {
-    
+
     private final SavingsPigService savingsPigService;
 
     @PostMapping("create")
     public ResponseEntity<SavingsPigResponse> createSavingsPig(@Valid @RequestBody SavingsPigCreationRequest request) {
-        
         return ResponseEntity.ok(savingsPigService.createSavingsPig(request));
     }
 
@@ -37,7 +36,12 @@ public class SavingsPigController {
     public ResponseEntity<SavingsPigResponse> saveMoney(@Valid @RequestBody SavingsPigDepositRequest request) {
         return ResponseEntity.ok(savingsPigService.depositMoney(request));
     }
-    
+
+    @PostMapping("break")
+    public ResponseEntity<SavingsPigResponse> breakSavingsPig(@Valid @RequestBody SavingsPigBreakRequest request) {
+        return ResponseEntity.ok(savingsPigService.brakeSavingsPig(request));
+    }
+
     @GetMapping("all")
     public ResponseEntity<List<SavingsPigResponse>> getAllSavingsPigs() {
         return ResponseEntity.ok(savingsPigService.getSavingsPigs());
