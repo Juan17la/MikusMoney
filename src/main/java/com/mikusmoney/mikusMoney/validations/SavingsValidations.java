@@ -34,7 +34,7 @@ public class SavingsValidations {
         }
     }
 
-    private void validateBrokenPig(Boolean isBroken) {
+    public void validateBrokenPig(Boolean isBroken) {
         if (isBroken) {
             throw new IllegalStateException("Cannot perform this operation on a broken savings pig.");
         }
@@ -42,11 +42,11 @@ public class SavingsValidations {
 
     private void validateMaxUnbrokenPigs(Long mikuId) {
         int numberOfPigs = savingsPigRepository.getNumberOfPigsByOwnerId(mikuId);
-        
-        if(numberOfPigs >= 5) {
+
+        if (numberOfPigs >= 5) {
             throw new IllegalStateException("You cannot have more than 5 unbroken savings pigs.");
         }
-        
+
     }
 
     private void validateGoalAmount(BigDecimal goal) {
@@ -54,5 +54,5 @@ public class SavingsValidations {
             throw new IllegalArgumentException("Goal amount must be greater than zero.");
         }
     }
-    
+
 }
