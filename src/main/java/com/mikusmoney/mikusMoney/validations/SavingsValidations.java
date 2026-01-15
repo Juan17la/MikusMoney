@@ -14,9 +14,10 @@ public class SavingsValidations {
 
     private final SavingsPigRepository savingsPigRepository;
 
-    public Boolean transactionsValidation(BigDecimal amount, Boolean isBroken) {
+    public Boolean transactionsValidation(BigDecimal amount, Boolean isBroken, BigDecimal balance) {
         validateBrokenPig(isBroken);
         validateDepositAmount(amount);
+        validateAccountFounds(balance, amount);
         return true;
     }
 
@@ -27,6 +28,11 @@ public class SavingsValidations {
     }
 
     // Single Validations
+    private void validateAccountFounds(BigDecimal balance, BigDecimal amount) {
+        if (balance.compareTo(amount) < 0) {
+            throw new IllegalArgumentException("Insufficient funds in the account.");
+        }
+    }
 
     private void validateDepositAmount(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
