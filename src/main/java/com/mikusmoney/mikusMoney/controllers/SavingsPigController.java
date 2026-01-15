@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +20,6 @@ import com.mikusmoney.mikusMoney.services.SavingsPigService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
@@ -32,14 +34,20 @@ public class SavingsPigController {
         return ResponseEntity.ok(savingsPigService.createSavingsPig(request));
     }
 
-    @PostMapping("save")
-    public ResponseEntity<SavingsPigResponse> saveMoney(@Valid @RequestBody SavingsPigDepositRequest request) {
-        return ResponseEntity.ok(savingsPigService.depositMoney(request));
+    @PostMapping("{pigId}/save")
+    public ResponseEntity<SavingsPigResponse> saveMoney(
+            @PathVariable Long pigId,
+            @Valid @RequestBody SavingsPigDepositRequest request,
+            @RequestHeader("Idempotency-Key") String idempotencyKey) {
+        return ResponseEntity.ok(savingsPigService.depositMoney(pigId, request, idempotencyKey));
     }
 
-    @PostMapping("break")
-    public ResponseEntity<SavingsPigResponse> breakSavingsPig(@Valid @RequestBody SavingsPigBreakRequest request) {
-        return ResponseEntity.ok(savingsPigService.brakeSavingsPig(request));
+    @PostMapping("{pigId}/break")
+    public ResponseEntity<SavingsPigResponse> breakSavingsPig(
+            @PathVariable Long pigId,
+            @Valid @RequestBody SavingsPigBreakRequest request,
+            @RequestHeader("Idempotency-Key") String idempotencyKey) {
+        return ResponseEntity.ok(savingsPigService.brakeSavingsPig(pigId, request, idempotencyKey));
     }
 
     @GetMapping("all")
