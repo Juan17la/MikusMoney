@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigBreakRequest;
 import com.mikusmoney.mikusMoney.dto.savingsDTOs.SavingsPigResponse;
-import com.mikusmoney.mikusMoney.entity.Miku;
 import com.mikusmoney.mikusMoney.entity.SavingsPig;
 import com.mikusmoney.mikusMoney.mapper.SavingsPigMapper;
+import com.mikusmoney.mikusMoney.repository.AccountRepository;
 import com.mikusmoney.mikusMoney.repository.SavingsPigRepository;
 import com.mikusmoney.mikusMoney.services.AuthContextService;
+import com.mikusmoney.mikusMoney.services.AuthContextService.AuthContext;
+import com.mikusmoney.mikusMoney.services.IdempotencyService;
 import com.mikusmoney.mikusMoney.validations.SavingsValidations;
 
 import lombok.RequiredArgsConstructor;
@@ -19,27 +21,39 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BreakSavingsOperation implements SavingsOperation<SavingsPigBreakRequest, SavingsPigResponse>{
     
+    private final IdempotencyService idempotencyService;
     private final SavingsValidations savingsValidations;
     private final SavingsPigRepository savingsPigRepository;
     private final AuthContextService authContextService;
     private final SavingsPigMapper savingsPigMapper;
+    private final AccountRepository accountRepository;
 
     @Override
     public SavingsPigResponse execute(SavingsPigBreakRequest request) {
+        throw new UnsupportedOperationException("Use execute with pigId and idempotency key");
+    }
 
-        Miku miku = authContextService.getAuthenticatedMiku();
+    @Override
+    public SavingsPigResponse execute(Long pigId, SavingsPigBreakRequest request, String idempotencyKey) {
+        // Validate idempotency
+        idempotencyService.validate(idempotencyKey);
 
-        SavingsPig pig = savingsPigRepository.findByIdAndMikuId(request.getSavingsPigId(), miku.getId());
+        // Validate authentication and PIN
+        AuthContext context = authContextService.validateAuth(request.getPinCode());
+
+        SavingsPig savingsPig = savingsPigRepository.findByIdAndMikuId(pigId, context.miku().getId());
         
-        savingsValidations.validateBrokenPig(pig.getBroken());
+        savingsValidations.validateBrokenPig(savingsPig.getBroken());
 
-        pig.setBroken(true);
-        pig.setBrokenAt(LocalDateTime.now());
+        savingsPig.setBroken(true);
+        savingsPig.setBrokenAt(LocalDateTime.now());
+
+        context.account().deposit(savingsPig.getSavedMoney());
+        accountRepository.save(context.account());
         
-        SavingsPig brokenPig = savingsPigRepository.save(pig);
+        SavingsPig brokenPig = savingsPigRepository.save(savingsPig);
 
         return savingsPigMapper.toResponse(brokenPig);
-        
     }
     
 }
