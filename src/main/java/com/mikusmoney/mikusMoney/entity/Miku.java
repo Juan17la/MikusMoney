@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "mikus")
@@ -44,9 +45,9 @@ public class Miku {
     @OneToOne(mappedBy = "miku", cascade = CascadeType.ALL, orphanRemoval = true)
     private Account account;
 
-    // One-to-one relationship with SavingsPig
-    @OneToOne(mappedBy = "miku", cascade = CascadeType.ALL, orphanRemoval = true)
-    private SavingsPig savingsPig;
+    // One-to-many relationship with SavingsPig
+    @OneToMany(mappedBy = "miku", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SavingsPig> savingsPigs;
 
     // Lifecycle callback - executed before persist
     @PrePersist

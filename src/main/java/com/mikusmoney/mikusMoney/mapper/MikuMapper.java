@@ -13,7 +13,7 @@ public interface MikuMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "credential", ignore = true)
     @Mapping(target = "account", ignore = true)
-    @Mapping(target = "savingsPig", ignore = true)
+    @Mapping(target = "savingsPigs", ignore = true)
     Miku toEntity(MikuCreateRequest request);
 
     @Mapping(target = "email", source = "credential.email")

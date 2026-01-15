@@ -41,7 +41,7 @@ public class SavingsPig {
 
     // One-to-one relationship with Miku
     @OneToOne
-    @JoinColumn(name = "miku_id", nullable = false, unique = true)
+    @JoinColumn(name = "miku_id", nullable = false)
     private Miku miku;
 
     // Lifecycle callback - executed before persist
