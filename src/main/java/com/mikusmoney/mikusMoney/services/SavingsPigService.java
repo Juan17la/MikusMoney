@@ -13,6 +13,7 @@ import com.mikusmoney.mikusMoney.services.operations.CreateSavingsPigOperation;
 import com.mikusmoney.mikusMoney.services.operations.GetSavingsPigsOperation;
 import com.mikusmoney.mikusMoney.services.operations.SavingsSaveOperation;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,12 +29,14 @@ public class SavingsPigService {
         return createSavingsPigOperation.execute(request);
     }
 
-    public SavingsPigResponse brakeSavingsPig(SavingsPigBreakRequest request) {
-        return breakSavingsOperation.execute(request);
+    @Transactional
+    public SavingsPigResponse brakeSavingsPig(Long pigId, SavingsPigBreakRequest request, String idempotencyKey) {
+        return breakSavingsOperation.execute(pigId, request, idempotencyKey);
     }
 
-    public SavingsPigResponse depositMoney(SavingsPigDepositRequest request) {
-        return savingsDepositOperation.execute(request);
+    @Transactional
+    public SavingsPigResponse depositMoney(Long pigId, SavingsPigDepositRequest request, String idempotencyKey) {
+        return savingsDepositOperation.execute(pigId, request, idempotencyKey);
     }
 
     public List<SavingsPigResponse> getSavingsPigs() {
