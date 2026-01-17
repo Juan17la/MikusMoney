@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,17 +36,15 @@ public class SavingsPigController {
     @PostMapping("{pigId}/save")
     public ResponseEntity<SavingsPigResponse> saveMoney(
             @PathVariable Long pigId,
-            @Valid @RequestBody SavingsPigDepositRequest request,
-            @RequestHeader("Idempotency-Key") String idempotencyKey) {
-        return ResponseEntity.ok(savingsPigService.depositMoney(pigId, request, idempotencyKey));
+            @Valid @RequestBody SavingsPigDepositRequest request) {
+        return ResponseEntity.ok(savingsPigService.depositMoney(pigId, request));
     }
 
     @PostMapping("{pigId}/break")
     public ResponseEntity<SavingsPigResponse> breakSavingsPig(
             @PathVariable Long pigId,
-            @Valid @RequestBody SavingsPigBreakRequest request,
-            @RequestHeader("Idempotency-Key") String idempotencyKey) {
-        return ResponseEntity.ok(savingsPigService.brakeSavingsPig(pigId, request, idempotencyKey));
+            @Valid @RequestBody SavingsPigBreakRequest request) {
+        return ResponseEntity.ok(savingsPigService.brakeSavingsPig(pigId, request));
     }
 
     @GetMapping("all")

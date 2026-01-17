@@ -30,13 +30,13 @@ public class SavingsPigService {
     }
 
     @Transactional
-    public SavingsPigResponse brakeSavingsPig(Long pigId, SavingsPigBreakRequest request, String idempotencyKey) {
-        return breakSavingsOperation.execute(pigId, request, idempotencyKey);
+    public SavingsPigResponse brakeSavingsPig(Long pigId, SavingsPigBreakRequest request) {
+        return breakSavingsOperation.execute(pigId, request);
     }
 
     @Transactional
-    public SavingsPigResponse depositMoney(Long pigId, SavingsPigDepositRequest request, String idempotencyKey) {
-        return savingsDepositOperation.execute(pigId, request, idempotencyKey);
+    public SavingsPigResponse depositMoney(Long pigId, SavingsPigDepositRequest request) {
+        return savingsDepositOperation.execute(pigId, request);
     }
 
     public List<SavingsPigResponse> getSavingsPigs() {

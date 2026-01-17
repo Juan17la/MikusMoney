@@ -10,7 +10,6 @@ import com.mikusmoney.mikusMoney.repository.AccountRepository;
 import com.mikusmoney.mikusMoney.repository.SavingsPigRepository;
 import com.mikusmoney.mikusMoney.services.AuthContextService;
 import com.mikusmoney.mikusMoney.services.AuthContextService.AuthContext;
-import com.mikusmoney.mikusMoney.services.IdempotencyService;
 import com.mikusmoney.mikusMoney.validations.SavingsValidations;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SavingsSaveOperation implements SavingsOperation<SavingsPigDepositRequest, SavingsPigResponse> {
 
-    private final IdempotencyService idempotencyService;
     private final AuthContextService authContextService;
     private final SavingsValidations savingsValidations;
     private final SavingsPigRepository savingsPigRepository;
@@ -32,9 +30,7 @@ public class SavingsSaveOperation implements SavingsOperation<SavingsPigDepositR
     }
 
     @Override
-    public SavingsPigResponse execute(Long pigId, SavingsPigDepositRequest request, String idempotencyKey) {
-        // Validate idempotency
-        idempotencyService.validate(idempotencyKey);
+    public SavingsPigResponse execute(Long pigId, SavingsPigDepositRequest request) {
         
         // Validate authentication and PIN
         AuthContext context = authContextService.validateAuth(request.getPinCode());
